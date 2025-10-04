@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SidTech — Fast Static Sites for Clinics & Schools</title>
+  <meta name="description" content="SidTech base template: ultra-fast static HTML for small businesses, clinics, and schools. No backend. Free hosting on GitHub Pages/Netlify." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Cpath d='M18 34c0-8 6-14 14-14h14v6H32a8 8 0 0 0-8 8h8v6H18v-6Z' fill='%23fff'/%3E%3C/svg%3E"/>
+
+  <!-- Tailwind CDN for zero-build workflow -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // SidTech brand system via CSS variables (easy to tweak per client)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { DEFAULT: '#0f172a', 50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1f2937',900:'#0f172a' } },
+          fontFamily: { display: ['Inter', 'ui-sans-serif', 'system-ui'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .container{max-width:1120px}
+    .card{border:1px solid rgb(226 232 240/1); border-radius:1rem; background:#fff}
+    .shadow-soft{box-shadow:0 8px 30px rgba(2,6,23,.06)}
+    .btn{border-radius:1rem}
+    /* Swap these 3 lines per client for fast theming */
+    :root{ --brand:#0f172a; --brand-ink:#ffffff; --accent:#4f46e5; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <!-- HEADER -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b">
+    <div class="mx-auto container px-4 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-2xl" style="background:var(--brand); color:var(--brand-ink); display:grid; place-items:center; font-weight:700">ST</div>
+        <div>
+          <p class="text-lg font-semibold leading-4">SidTech</p>
+          <p class="text-xs text-slate-500">Fast, beautiful static sites</p>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#services" class="text-slate-600 hover:text-slate-900">Services</a>
+        <a href="#work" class="text-slate-600 hover:text-slate-900">Work</a>
+        <a href="#pricing" class="text-slate-600 hover:text-slate-900">Pricing</a>
+        <a href="#faq" class="text-slate-600 hover:text-slate-900">FAQ</a>
+        <a href="#contact" class="text-slate-600 hover:text-slate-900">Contact</a>
+      </nav>
+      <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-white btn" style="background:var(--brand)">Start a Project</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="mx-auto container px-4 pt-12 pb-16 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight">Launch a polished website in <span class="underline decoration-4 decoration-indigo-300 underline-offset-4">minutes</span>, not months.</h1>
+        <p class="mt-4 text-slate-600 text-lg">We build ultra-fast static sites for clinics, schools, and local businesses. No servers. No headaches. Free hosting on GitHub Pages or Netlify.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#work" class="px-5 py-3 text-white btn" style="background:var(--brand)">See our work</a>
+          <a href="#contact" class="px-4 py-3 border btn">Get a quote</a>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-600">
+          <span>⚡ Deployed same day</span>
+          <span>🛡️ Secure by default</span>
+          <span>💸 Near-zero cost</span>
+        </div>
+      </div>
+      <div>
+        <div class="relative">
+          <img alt="SidTech preview" src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1600&auto=format&fit=crop" class="rounded-3xl shadow-soft"/>
+          <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-soft p-4 w-64">
+            <p class="text-sm text-slate-500">Average setup time</p>
+            <p class="text-2xl font-semibold"><span class="text-emerald-600">&lt; 30 min</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-16 bg-slate-50">
+    <div class="mx-auto container px-4">
+      <div class="mb-6">
+        <h2 class="text-3xl font-semibold">What we deliver</h2>
+        <p class="text-slate-600">Simple stack, pro results. Everything you need — nothing you don’t.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card p-6"><p class="font-medium">One‑page Static Sites</p><p class="text-sm text-slate-600 mt-2">Perfect for clinics, schools, local businesses. Blazing fast and secure.</p></div>
+        <div class="card p-6"><p class="font-medium">Contact & Appointment Forms</p><p class="text-sm text-slate-600 mt-2">Formspree/Netlify Forms — no backend, direct to your inbox.</p></div>
+        <div class="card p-6"><p class="font-medium">Custom Branding</p><p class="text-sm text-slate-600 mt-2">Colors, logo, typography tuned to your brand in minutes.</p></div>
+        <div class="card p-6"><p class="font-medium">Maps & WhatsApp CTA</p><p class="text-sm text-slate-600 mt-2">Google Map embed + 1‑tap messaging for easy contact.</p></div>
+        <div class="card p-6"><p class="font-medium">SEO Basics</p><p class="text-sm text-slate-600 mt-2">Schema.org, clean meta tags, and fast performance.</p></div>
+        <div class="card p-6"><p class="font-medium">Free Hosting Setup</p><p class="text-sm text-slate-600 mt-2">GitHub Pages / Netlify deployment included.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK / PORTFOLIO GRID -->
+  <section id="work" class="py-16">
+    <div class="mx-auto container px-4">
+      <div class="mb-6 flex items-end justify-between">
+        <div>
+          <h2 class="text-3xl font-semibold">Recent work</h2>
+          <p class="text-slate-600">A few examples. We clone and customize this base for each client.</p>
+        </div>
+        <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-white btn" style="background:var(--brand)">Start yours</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- PROJECT CARD TEMPLATE: duplicate for portfolio items -->
+        <div class="card overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1200&auto=format&fit=crop" alt="Aaraike Hospital preview" class="w-full h-44 object-cover" />
+          <div class="p-5">
+            <p class="font-medium">Aaraike Super Speciality Hospital</p>
+            <p class="text-sm text-slate-600">One‑page hospital site with appointment form and map embed.</p>
+          </div>
+        </div>
+        <div class="card overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1541317715259-879f6cf3f946?q=80&w=1200&auto=format&fit=crop" alt="School website" class="w-full h-44 object-cover" />
+          <div class="p-5">
+            <p class="font-medium">Greenfield Public School</p>
+            <p class="text-sm text-slate-600">Courses, faculty, and admissions contact form.</p>
+          </div>
+        </div>
+        <div class="card overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop" alt="Clinic website" class="w-full h-44 object-cover" />
+          <div class="p-5">
+            <p class="font-medium">Banashree Ortho & Trauma</p>
+            <p class="text-sm text-slate-600">Orthopaedics + trauma clinic site with services & timings.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-16 bg-slate-50">
+    <div class="mx-auto container px-4">
+      <div class="mb-6">
+        <h2 class="text-3xl font-semibold">Simple pricing</h2>
+        <p class="text-slate-600">Pay once. Host free. Edit anytime.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6">
+          <p class="font-semibold">Starter</p>
+          <p class="text-3xl mt-2">₹6,999</p>
+          <ul class="mt-3 text-sm text-slate-600 list-disc pl-5">
+            <li>One‑page static site</li>
+            <li>Contact/Appointment form</li>
+            <li>Map embed</li>
+            <li>GitHub Pages setup</li>
+          </ul>
+        </div>
+        <div class="card p-6 border-2" style="border-color:var(--brand)">
+          <p class="font-semibold">Professional</p>
+          <p class="text-3xl mt-2">₹12,999</p>
+          <ul class="mt-3 text-sm text-slate-600 list-disc pl-5">
+            <li>Everything in Starter</li>
+            <li>Custom branding pack</li>
+            <li>WhatsApp CTA + Analytics</li>
+            <li>Domain + email setup help</li>
+          </ul>
+        </div>
+        <div class="card p-6">
+          <p class="font-semibold">Plus</p>
+          <p class="text-3xl mt-2">₹19,999</p>
+          <ul class="mt-3 text-sm text-slate-600 list-disc pl-5">
+            <li>Multi‑page site</li>
+            <li>Blog or updates page</li>
+            <li>Basic CMS (Notion/Airtable)</li>
+            <li>Hosting on Netlify/Vercel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16">
+    <div class="mx-auto container px-4">
+      <div class="mb-6">
+        <h2 class="text-3xl font-semibold">FAQ</h2>
+        <p class="text-slate-600">Quick answers for common questions.</p>
+      </div>
+      <div class="divide-y card">
+        <details class="p-5" open>
+          <summary class="cursor-pointer font-medium">Is this really just one file?</summary>
+          <p class="mt-3 text-slate-600">Yes. Pure HTML + Tailwind CDN. Forms go through Formspree or Netlify Forms. No backend needed.</p>
+        </details>
+        <details class="p-5">
+          <summary class="cursor-pointer font-medium">Can I host it for free?</summary>
+          <p class="mt-3 text-slate-600">Absolutely. GitHub Pages or Netlify give free hosting with SSL.</p>
+        </details>
+        <details class="p-5">
+          <summary class="cursor-pointer font-medium">How fast can we launch?</summary>
+          <p class="mt-3 text-slate-600">Same day in most cases. We copy this base, change branding & content, and deploy.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-16 bg-slate-50">
+    <div class="mx-auto container px-4">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-3xl font-semibold">Start a project</h2>
+          <p class="mt-2 text-slate-600">Tell us a bit about your clinic/school and we’ll reply with a proposal.</p>
+          <!-- Replace action with your Formspree endpoint -->
+          <form action="https://formspree.io/f/your-endpoint" method="POST" class="mt-5 grid gap-4">
+            <input name="name" required placeholder="Your name" class="w-full border rounded-lg px-3 py-2" />
+            <input name="email" type="email" required placeholder="Email" class="w-full border rounded-lg px-3 py-2" />
+            <input name="org" placeholder="Clinic/School name" class="w-full border rounded-lg px-3 py-2" />
+            <textarea name="message" placeholder="What do you need?" class="w-full border rounded-lg px-3 py-2"></textarea>
+            <button type="submit" class="px-4 py-2 text-white btn" style="background:var(--brand)">Send</button>
+          </form>
+        </div>
+        <div>
+          <div class="card p-6">
+            <p class="font-semibold">What’s included</p>
+            <ul class="mt-3 list-disc pl-5 text-sm text-slate-600">
+              <li>Free hosting setup (GitHub Pages / Netlify)</li>
+              <li>Custom colors & logo</li>
+              <li>Forms wired to your inbox</li>
+              <li>1 round of content edits</li>
+            </ul>
+          </div>
+          <div class="mt-4 card p-6">
+            <p class="font-semibold">Contact</p>
+            <p class="text-sm text-slate-600 mt-2">✉ hello@sidtech.dev</p>
+            <p class="text-sm text-slate-600">📞 +91 9XX XX XX XXX</p>
+            <a class="mt-3 inline-block underline text-sm" href="https://github.com/sidtech-git-org" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t">
+    <div class="mx-auto container px-4 py-10 grid md:grid-cols-4 gap-8 text-sm">
+      <div>
+        <div class="h-10 w-10 rounded-2xl" style="background:var(--brand); color:var(--brand-ink); display:grid; place-items:center; font-weight:700">ST</div>
+        <p class="mt-3 text-slate-600 max-w-sm">SidTech builds fast, affordable static sites for local clinics, schools, and SMBs. Pay once, host free, launch fast.</p>
+      </div>
+      <div>
+        <p class="font-semibold">Links</p>
+        <ul class="mt-3 space-y-2 text-slate-600">
+          <li><a href="#services" class="hover:underline">Services</a></li>
+          <li><a href="#work" class="hover:underline">Work</a></li>
+          <li><a href="#pricing" class="hover:underline">Pricing</a></li>
+          <li><a href="#contact" class="hover:underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold">Legal</p>
+        <ul class="mt-3 space-y-2 text-slate-600">
+          <li>Privacy policy</li>
+          <li>Terms of service</li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold">Newsletter</p>
+        <p class="mt-2 text-slate-600">Occasional product updates, no spam.</p>
+        <form action="https://formspree.io/f/your-endpoint" method="POST" class="mt-3 flex gap-2">
+          <input name="email" type="email" required placeholder="Email address" class="flex-1 border rounded-lg px-3 py-2" />
+          <button type="submit" class="px-4 py-2 text-white btn" style="background:var(--brand)">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t py-4 text-center text-xs text-slate-500">© <span id="year"></span> SidTech. Built with the Static Base Template.</div>
+  </footer>
+
+  <!-- Sticky WhatsApp CTA (swap number) -->
+  <a href="https://wa.me/919999999999" class="fixed bottom-4 right-4 md:right-8 z-40 px-4 py-3 rounded-xl text-white shadow-soft" style="background:var(--accent)">WhatsApp</a>
+
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
