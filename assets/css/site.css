@@ -1,0 +1,23 @@
+/* assets/css/site.css */
+
+/* Ensure your logo fits nicely in header/footer */
+.logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Make it slightly larger on desktop */
+@media (min-width: 768px) {
+  .logo {
+    max-height: 48px;
+  }
+}
+
+/* Optional brightness tweak for dark mode */
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: brightness(1.15);
+  }
+}
