@@ -161,40 +161,61 @@
   </section>
 
   <!-- WORK / PORTFOLIO GRID -->
-  <section id="work" class="py-16">
-    <div class="mx-auto container px-4">
-      <div class="mb-6 flex items-end justify-between">
-        <div>
-          <h2 class="text-3xl font-semibold">Recent work</h2>
-          <p class="text-slate-600">A few examples. We clone and customize this base for each client.</p>
-        </div>
-        <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-white btn g-brand shadow-soft hover:shadow-elev transition">Start yours</a>
+<section id="work" class="py-16">
+  <div class="mx-auto container px-4">
+    <div class="mb-6 flex items-end justify-between">
+      <div>
+        <h2 class="text-3xl font-semibold">Recent work</h2>
+        <p class="text-slate-600">A few examples. We clone and customize this base for each client.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="card overflow-hidden hover:shadow-elev transition">
-          <img src="https://sidtech-git-org.github.io/healthcare_aaraike_hospital_davanagere/" alt="Aaraike Hospital preview" class="w-full h-44 object-cover" />
-          <div class="p-5">
-            <p class="font-medium">Aaraike Super Speciality Hospital</p>
-            <p class="text-sm text-slate-600">One-page hospital site with appointment form and map embed.</p>
-          </div>
-        </div>
-        <div class="card overflow-hidden hover:shadow-elev transition">
-          <img src="https://images.unsplash.com/photo-1541317715259-879f6cf3f946?q=80&w=1200&auto=format&fit=crop" alt="School website" class="w-full h-44 object-cover" />
-          <div class="p-5">
-            <p class="font-medium">Greenfield Public School</p>
-            <p class="text-sm text-slate-600">Courses, faculty, and admissions contact form.</p>
-          </div>
-        </div>
-        <div class="card overflow-hidden hover:shadow-elev transition">
-          <img src="https://sidtech-git-org.github.io/healthcare_banashreeortho_davanagere/" alt="Clinic website" class="w-full h-44 object-cover" />
-          <div class="p-5">
-            <p class="font-medium">Banashree Ortho & Trauma</p>
-            <p class="text-sm text-slate-600">Orthopaedics + trauma clinic site with services & timings.</p>
-          </div>
-        </div>
-      </div>
+      <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-white btn g-brand shadow-soft hover:shadow-elev transition">Start yours</a>
     </div>
-  </section>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- AARAIKE -->
+      <a href="https://sidtech-git-org.github.io/healthcare_aaraike_hospital_davanagere/" target="_blank" class="card overflow-hidden hover:shadow-elev transition group">
+        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1200&auto=format&fit=crop" alt="Aaraike Hospital preview" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="p-5">
+          <p class="font-medium flex items-center justify-between">
+            Aaraike Super Speciality Hospital
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
+            </svg>
+          </p>
+          <p class="text-sm text-slate-600 mt-1">One-page hospital site with appointment form and map embed.</p>
+        </div>
+      </a>
+
+      <!-- GREENFIELD -->
+      <a href="#" target="_blank" class="card overflow-hidden hover:shadow-elev transition group">
+        <img src="https://images.unsplash.com/photo-1541317715259-879f6cf3f946?q=80&w=1200&auto=format&fit=crop" alt="School website" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="p-5">
+          <p class="font-medium flex items-center justify-between">
+            Greenfield Public School
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
+            </svg>
+          </p>
+          <p class="text-sm text-slate-600 mt-1">Courses, faculty, and admissions contact form.</p>
+        </div>
+      </a>
+
+      <!-- BANASHREE -->
+      <a href="https://sidtech-git-org.github.io/healthcare_banashreeortho_davanagere/" target="_blank" class="card overflow-hidden hover:shadow-elev transition group">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop" alt="Clinic website" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="p-5">
+          <p class="font-medium flex items-center justify-between">
+            Banashree Ortho & Trauma
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
+            </svg>
+          </p>
+          <p class="text-sm text-slate-600 mt-1">Orthopaedics + trauma clinic site with services & timings.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
   <!-- PRICING -->
   <section id="pricing" class="py-16 bg-slate-50">
