@@ -29,6 +29,9 @@
     }
   </script>
 
+  <!-- Font Awesome (for WhatsApp icon) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <!-- ✅ Your custom CSS file (local styles + logo sizing) -->
   <link rel="stylesheet" href="assets/css/site.css" />
 
@@ -50,7 +53,7 @@
           class="logo h-10 w-auto rounded-xl shadow-soft"
           height="40" />
       <div>
-        <p class="text-xs text-slate-500">Fast, beautiful static sites</p>
+        <p class="text-xs text-slate-500">Fast, beautiful static websites</p>
       </div>
       </a>
 
@@ -97,14 +100,14 @@
         <h1 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight mt-3">
           Launch a polished website in <span class="underline decoration-4 decoration-indigo-300 underline-offset-4">minutes</span>, not months.
         </h1>
-        <p class="mt-4 text-slate-600 text-lg">We build ultra-fast static sites for clinics, schools, and local businesses. No servers. No headaches. Free hosting on GitHub Pages or Netlify.</p>
+        <p class="mt-4 text-slate-600 text-lg">We build ultra-fast static websites for pretty much any businesses in the town. No servers. No headache.</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#work" class="px-5 py-3 text-slate-600 btn bg-white border border-slate-200 shadow-soft hover:shadow-elev transition">See our works</a>
+          <a href="#work" class="px-4 py-3 border btn bg-white hover:bg-slate-50 transition">See our works</a>
           <a href="#contact" class="px-4 py-3 border btn bg-white hover:bg-slate-50 transition">Get a quote</a>
         </div>
         <div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-600">
           <span>🛡️ Secure by default</span>
-          <span>💸 Near-zero cost</span>
+          <span>💸 Pay once use lifetime</span>
           <span>⚡ Lighthouse 95+ scores</span>
         </div>
       </div>
@@ -281,7 +284,8 @@
             <input name="email" type="email" required placeholder="Email" class="w-full border rounded-lg px-3 py-2" />
             <input name="org" placeholder="Clinic/School name" class="w-full border rounded-lg px-3 py-2" />
             <textarea name="message" placeholder="What do you need?" class="w-full border rounded-lg px-3 py-2"></textarea>
-            <button type="submit" class="px-4 py-2 text-white btn g-brand shadow-soft hover:shadow-elev transition">Send</button>
+            <button type="submit" class="px-4 py-2 text-slate-600 btn g-brand shadow-soft hover:shadow-elev transition">Send</button>
+
           </form>
           <p class="text-xs text-slate-500 mt-3">By submitting you agree to our <a href="#" class="underline">terms</a>.</p>
         </div>
@@ -289,14 +293,11 @@
           <div class="mt-4 card p-6">
             <p class="font-semibold">Contact</p>
             <p class="text-sm text-slate-600 mt-2">
-              ✉ <a class="underline hover:text-slate-900" href="mailto:info.sidtech@gmail.com">info.sidtech@gmail.com</a>
+              ✉ <a class="underline hover:text-slate-900" href="mailto:info@sidtech.in">info@sidtech.in</a>
             </p>
             <p class="text-sm text-slate-600">
               📞 <a class="underline hover:text-slate-900" href="tel:+919986187484">+91 9986187484</a>
             </p>
-            <div class="mt-3 flex gap-4">
-              <a class="underline text-sm" href="https://wa.me/919986187484" target="_blank">WhatsApp</a>
-            </div>
           </div>
         </div>
       </div>
@@ -311,7 +312,7 @@
           alt="SidTech"
           class="logo h-10 w-auto rounded-xl shadow-soft"
           height="40" />
-        <p class="mt-3 text-slate-600 max-w-sm">SidTech builds fast, affordable static sites for local clinics, schools, and SMBs. Pay once, host free, launch fast.</p>
+        <p class="mt-3 text-slate-600 max-w-sm">SidTech builds fast, affordable static websites for pretty much any businesses in the town. Pay once, launch fast, and use lifetime.</p>
       </div>
       <div>
         <p class="font-semibold">Links</p>
@@ -342,7 +343,13 @@
   </footer>
 
   <!-- Sticky WhatsApp CTA (updated number) -->
-  <a href="https://wa.me/919986187484" class="fixed bottom-4 right-4 md:right-8 z-40 px-4 py-3 rounded-xl text-slate-600 shadow-soft hover:shadow-elev transition bg-white border border-slate-200">WhatsApp</a>
+  <!-- Floating WhatsApp Chat Button -->
+  <a href="https://wa.me/919986187484"
+    target="_blank"
+    class="fixed bottom-4 right-4 md:right-8 z-40 p-4 rounded-full shadow-soft hover:shadow-elev transition"
+    style="background-color: #25D366;">
+    <i class="fab fa-whatsapp text-white text-3xl"></i>
+  </a>
 
   <script>
     // Year
