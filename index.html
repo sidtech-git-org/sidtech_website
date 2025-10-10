@@ -1,13 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SidTech — Fast Static Sites for Clinics & Schools</title>
-  <meta name="description" content="SidTech builds ultra-fast static websites for clinics, schools, and SMBs. No backend, free hosting on GitHub Pages or Netlify." />
-  
-  <!-- Favicon (your .jpg version) -->
+  <title>SidTech — Websites for Clinics, Schools & SMBs</title>
+  <meta name="description" content="SidTech builds ultra-fast static websites for clinics, schools, and SMBs. Pay once. Host free on GitHub Pages or Netlify." />
   <link rel="icon" type="image/jpeg" href="assets/img/favicon.jpg" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,215 +20,295 @@
         extend: {
           colors: {
             brand: {
-              DEFAULT: '#0f172a',
-              50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',
-              300:'#cbd5e1',400:'#94a3b8',500:'#64748b',
-              600:'#475569',700:'#334155',800:'#1f2937',900:'#0f172a'
+              DEFAULT: '#0f172a', // deep navy
+              ink: '#0b1220',
+              sky: '#2563eb',
+              soft: '#eef2ff'
             }
           },
-          fontFamily: { display: ['Inter', 'ui-sans-serif', 'system-ui'] }
+          fontFamily: { display: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2,6,23,.06)',
+            elev: '0 22px 60px rgba(2,6,23,.10)'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+            marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            marquee: 'marquee 18s linear infinite'
+          }
         }
       }
     }
   </script>
 
-  <!-- Font Awesome (for WhatsApp icon) -->
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- ✅ Your custom CSS file (local styles + logo sizing) -->
+  <!-- Local CSS (optional) -->
   <link rel="stylesheet" href="assets/css/site.css" />
 
   <style>
-    .container{max-width:1120px}
-    .card{border:1px solid rgb(226 232 240/1); border-radius:1rem; background:#fff}
-    .shadow-soft{box-shadow:0 8px 30px rgba(2,6,23,.06)}
-    .btn{border-radius:1rem}
-    :root{ --brand:#0f172a; --brand-ink:#ffffff; --accent:#4f46e5; }
+    :root{
+      --ink:#0f172a; --muted:#040405; --ring:#e2e8f0; --brand:#2563eb; --accent:#7c3aed;
+    }
+    html,body{ height:100% }
+    body{ font-synthesis-weight:none; }
+
+    /* ===== AURORA BACKGROUND ===== */
+    .bg-aurora{
+      position: fixed; inset: -10% -10% auto -10%;
+      height: 60vh; z-index: -1; pointer-events:none; filter: saturate(1.1) contrast(1.05);
+      background:
+        radial-gradient(40% 60% at 10% 20%, rgba(124,58,237,.18) 0%, rgba(124,58,237,0) 60%),
+        radial-gradient(50% 50% at 85% 15%, rgba(37,99,235,.18) 0%, rgba(37,99,235,0) 60%),
+        radial-gradient(60% 45% at 60% 80%, rgba(16,185,129,.16) 0%, rgba(16,185,129,0) 60%),
+        linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+      mask-image: radial-gradient(1200px 600px at 50% 0%, black 60%, transparent 100%);
+    }
+    /* dotted grid overlay for subtle texture */
+    .bg-grid:before{
+      content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.35;
+      background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+      background-size: 16px 16px;
+      mask-image: radial-gradient(900px 480px at 50% 0%, black 55%, transparent 100%);
+    }
+
+    /* ===== SURFACES ===== */
+    .glass{
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(226,232,240,.8);
+    }
+    .chip{
+      border:1px solid var(--ring);
+      background:#fff; border-radius:9999px; padding:.375rem .75rem;
+      box-shadow: 0 1px 0 rgba(0,0,0,.02) inset;
+    }
+    .btn{ border-radius:1rem; padding:.75rem 1rem; font-weight:600 }
+    .btn-brand{ background: linear-gradient(90deg, var(--brand), #3b82f6); color:#fff; }
+    .btn-brand:hover{ opacity:.95; box-shadow: 0 10px 22px rgba(37,99,235,.22) }
+    .btn-ghost{ background:#fff; border:1px solid var(--ring); color:var(--ink) }
+    .btn-ghost:hover{ background:#f8fafc }
+
+    /* marquee (updated) */
+    .marquee-track{
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      width: max-content;     /* allows smooth looping width */
+      /* no animation here because you're already using Tailwind's animate-marquee class */
+    }
+    .logo{
+      height: 28px;
+      display: inline-block;
+      object-fit: contain;
+      opacity: 1;             /* fully visible */
+      filter: none;           /* remove grayscale/contrast filter */
+    }
+    /* tech logos uniform size */
+    .tech-logo {
+      height: 64px; /* larger and more visible */
+      width: auto;
+      object-fit: contain;
+      filter: none;
+      opacity: 1;
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-display">
+
+<body class="bg-slate-50 text-slate-800 font-display antialiased">
+  <div class="bg-aurora"></div>
+  <div class="bg-grid"></div>
+
   <!-- HEADER -->
-  <header class="sticky top-0 z-30 backdrop-blur bg-white/70 border-b">
-    <div class="mx-auto container px-4 py-3 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3">
-      <img src="assets/img/sidtech-logo.jpg"
-          alt="SidTech"
-          class="logo h-10 w-auto rounded-xl shadow-soft"
-          height="40" />
-      <div>
-        <p class="text-xs text-slate-500">Fast, beautiful static websites</p>
+  <header class="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-slate-200">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex items-center justify-between py-3">
+        <a href="#home" class="flex flex-col items-start" aria-label="SidTech Home">
+          <img src="assets/img/sidtech-logo.jpg" alt="SidTech" class="h-10 w-auto rounded-xl shadow-soft" height="40" />
+          <span class="text-xs text-slate-500 mt-1 tracking-wide">your local technology partner</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#services" class="text-slate-600 hover:text-slate-900">Services</a>
+          <a href="#work" class="text-slate-600 hover:text-slate-900">Work</a>
+          <a href="#pricing" class="text-slate-600 hover:text-slate-900">Pricing</a>
+          <a href="#faq" class="text-slate-600 hover:text-slate-900">FAQ</a>
+          <a href="#contact" class="text-slate-600 hover:text-slate-900">Contact</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-block btn btn-brand shadow-soft">Start a Project</a>
+          <button id="menuBtn" class="md:hidden p-2 rounded-xl border border-slate-200" aria-label="Toggle menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#334155" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
       </div>
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#services" class="text-slate-600 hover:text-slate-900">Services</a>
-        <a href="#work" class="text-slate-600 hover:text-slate-900">Work</a>
-        <a href="#pricing" class="text-slate-600 hover:text-slate-900">Pricing</a>
-        <a href="#faq" class="text-slate-600 hover:text-slate-900">FAQ</a>
-        <a href="#contact" class="text-slate-600 hover:text-slate-900">Contact</a>
-      </nav>
-
-      <div class="flex items-center gap-3">
-        <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-slate-600 btn g-brand shadow-soft hover:shadow-elev transition">Start a Project</a>
-        <!-- Mobile menu button -->
-        <button id="menuBtn" class="md:hidden p-2 rounded-xl border hover:bg-white/60" aria-label="Open menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#334155" stroke-width="2" stroke-linecap="round"/></svg>
-        </button>
+      <!-- Mobile -->
+      <div id="mobileNav" class="hidden md:hidden pb-3">
+        <nav class="grid gap-2 text-sm glass rounded-2xl p-3">
+          <a onclick="toggleMenu()" href="#services" class="py-2 px-3 rounded-lg hover:bg-white">Services</a>
+          <a onclick="toggleMenu()" href="#work" class="py-2 px-3 rounded-lg hover:bg-white">Work</a>
+          <a onclick="toggleMenu()" href="#pricing" class="py-2 px-3 rounded-lg hover:bg-white">Pricing</a>
+          <a onclick="toggleMenu()" href="#faq" class="py-2 px-3 rounded-lg hover:bg-white">FAQ</a>
+          <a onclick="toggleMenu()" href="#contact" class="py-2 px-3 rounded-lg hover:bg-white">Contact</a>
+        </nav>
       </div>
-    </div>
-    <!-- Mobile Drawer -->
-    <div id="mobileNav" class="hidden md:hidden border-t bg-white/90 backdrop-blur">
-      <nav class="mx-auto container px-4 py-3 grid gap-2 text-sm">
-        <a onclick="toggleMenu()" href="#services" class="py-2">Services</a>
-        <a onclick="toggleMenu()" href="#work" class="py-2">Work</a>
-        <a onclick="toggleMenu()" href="#pricing" class="py-2">Pricing</a>
-        <a onclick="toggleMenu()" href="#faq" class="py-2">FAQ</a>
-        <a onclick="toggleMenu()" href="#contact" class="py-2">Contact</a>
-      </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section id="home" class="relative overflow-hidden">
-    <!-- Decorative gradients -->
-    <div class="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full g-brand blur-3xl opacity-30 animate-pulseGlow"></div>
-    <div class="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full g-brand blur-3xl opacity-20 animate-pulseGlow"></div>
-
-    <div class="mx-auto container px-4 pt-12 pb-16 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <p class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 ring-gradient bg-white">
-          <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Deployed same day
-        </p>
-        <h1 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight mt-3">
-          Launch a polished website in <span class="underline decoration-4 decoration-indigo-300 underline-offset-4">minutes</span>, not months.
-        </h1>
-        <p class="mt-4 text-slate-600 text-lg">We build ultra-fast static websites for pretty much any businesses in the town. No servers. No headache.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#work" class="px-4 py-3 border btn bg-white hover:bg-slate-50 transition">See our works</a>
-          <a href="#contact" class="px-4 py-3 border btn bg-white hover:bg-slate-50 transition">Get a quote</a>
+  <section id="home" class="relative">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-10 items-center pt-12 pb-16">
+        <div>
+          <span class="chip inline-flex items-center gap-2 text-xs font-medium">
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Launch in a day
+          </span>
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 text-slate-900">
+            Websites that feel <span class="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 bg-clip-text text-transparent">premium</span> — without premium headaches.
+          </h1>
+          <p class="mt-4 text-lg text-slate-600 max-w-prose">
+            We build ultra-fast, maintenance-light websites for Hospitals, Schools, and pretty much any businesses in the town.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#contact" class="btn btn-brand shadow-soft">Get a proposal</a>
+            <a href="#work" class="btn btn-ghost">See our work</a>
+          </div>
+          <ul class="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-600">
+            <li>🛡️ Secure by default</li>
+            <li>⚡ Lighthouse 95+ scores</li>
+            <li>💸 One-time cost</li>
+          </ul>
         </div>
-        <div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-600">
-          <span>🛡️ Secure by default</span>
-          <span>💸 Pay once use lifetime</span>
-          <span>⚡ Lighthouse 95+ scores</span>
+        <div>
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1600&auto=format&fit=crop"
+                 alt="Website preview mock" class="rounded-3xl shadow-elev animate-float" />
+            <div class="absolute -bottom-6 -left-6 glass rounded-2xl p-4 w-64">
+              <p class="text-sm text-slate-600">Average setup time</p>
+              <p class="text-2xl font-semibold text-emerald-600"><span>&lt; 60 min</span></p>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="relative">
-          <img alt="SidTech preview" src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1600&auto=format&fit=crop" class="rounded-3xl shadow-soft animate-float"/>
-          <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-soft p-4 w-64 ring-gradient">
-            <p class="text-sm text-slate-500">Average setup time</p>
-            <p class="text-2xl font-semibold"><span class="text-emerald-600">&lt; 30 min</span></p>
-          </div>
+
+      <!-- TECH STACK / LOGOS -->
+      <div class="relative rounded-2xl border border-slate-200 bg-white/70 backdrop-blur py-6">
+        <p class="px-5 text-xs text-slate-500 text-center mb-3">Our Tech Stack</p>
+        <div class="flex flex-wrap justify-center items-center gap-10 px-5">
+          <img class="tech-logo" src="assets/img/logos/tailwind.png"  alt="Tailwind CSS" />
+          <img class="tech-logo" src="assets/img/logos/github.png"    alt="GitHub" />
+          <img class="tech-logo" src="assets/img/logos/html5.png"     alt="HTML5" />
+          <img class="tech-logo" src="assets/img/logos/netlify.png"   alt="Netlify" />
+          <img class="tech-logo" src="assets/img/logos/formspree.png" alt="Formspree" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="py-16 bg-slate-50">
-    <div class="mx-auto container px-4">
-      <div class="mb-6">
-        <h2 class="text-3xl font-semibold">What we deliver</h2>
+  <section id="services" class="py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="mb-8">
+        <h2 class="text-3xl font-bold text-slate-900">What we deliver</h2>
         <p class="text-slate-600">Simple stack, pro results. Everything you need — nothing you don’t.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div class="card p-6 hover:shadow-elev transition">
-          <p class="font-medium">One-page Static Sites</p>
-          <p class="text-sm text-slate-600 mt-2">Perfect for clinics, schools, local businesses. Blazing fast and secure.</p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass rounded-2xl p-6 shadow-soft">
+          <p class="font-semibold text-slate-900">One-page Static Sites</p>
+          <p class="text-sm text-slate-600 mt-2">Perfect for Hospitals, Schools, and local businesses. Blazing fast and secure.</p>
         </div>
-        <div class="card p-6 hover:shadow-elev transition">
-          <p class="font-medium">Contact & Appointment Forms</p>
-          <p class="text-sm text-slate-600 mt-2">Formspree/Netlify Forms — no backend, direct to your inbox.</p>
+        <div class="glass rounded-2xl p-6 shadow-soft">
+          <p class="font-semibold text-slate-900">Contact & Appointment Forms</p>
+          <p class="text-sm text-slate-600 mt-2">Formspree Forms — no backend, direct to your inbox.</p>
         </div>
-        <div class="card p-6 hover:shadow-elev transition">
-          <p class="font-medium">Custom Branding</p>
+        <div class="glass rounded-2xl p-6 shadow-soft">
+          <p class="font-semibold text-slate-900">Custom Branding</p>
           <p class="text-sm text-slate-600 mt-2">Colors, logo, typography tuned to your brand in minutes.</p>
         </div>
-        <div class="card p-6 hover:shadow-elev transition">
-          <p class="font-medium">Maps & WhatsApp CTA</p>
+        <div class="glass rounded-2xl p-6 shadow-soft">
+          <p class="font-semibold text-slate-900">Maps & WhatsApp CTA</p>
           <p class="text-sm text-slate-600 mt-2">Google Map embed + 1-tap messaging for easy contact.</p>
         </div>
-        <div class="card p-6 hover:shadow-elev transition">
-          <p class="font-medium">SEO Basics</p>
+        <div class="glass rounded-2xl p-6 shadow-soft">
+          <p class="font-semibold text-slate-900">SEO Basics</p>
           <p class="text-sm text-slate-600 mt-2">Schema.org, clean meta tags, and fast performance.</p>
         </div>
-        <div class="card p-6 hover:shadow-elev transition">
-          <p class="font-medium">Free Hosting Setup</p>
+        <div class="glass rounded-2xl p-6 shadow-soft">
+          <p class="font-semibold text-slate-900">Free Hosting Setup</p>
           <p class="text-sm text-slate-600 mt-2">GitHub Pages / Netlify deployment included.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WORK / PORTFOLIO GRID -->
-<section id="work" class="py-16">
-  <div class="mx-auto container px-4">
-    <div class="mb-6 flex items-end justify-between">
-      <div>
-        <h2 class="text-3xl font-semibold">Our works</h2>
+  <!-- WORK / PORTFOLIO -->
+  <section id="work" class="py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="mb-6 flex items-end justify-between">
+        <h2 class="text-3xl font-bold text-slate-900">Our works</h2>
+        <a href="#contact" class="hidden sm:inline-block btn btn-brand shadow-soft">Start yours</a>
       </div>
-      <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-white btn g-brand shadow-soft hover:shadow-elev transition">Start yours</a>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="https://sidtech-git-org.github.io/healthcare_aaraike_hospital_davanagere/" target="_blank" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
+        <img src="assets/img/aaraike-hospital.jpg" alt="Aaraike Super Speciality Hospital" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+
+          <div class="p-5">
+            <p class="font-semibold text-slate-900 flex items-center justify-between">
+              Aaraike Super Speciality Hospital
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16"/></svg>
+            </p>
+            <p class="text-sm text-slate-600 mt-1">One-page hospital site with appointment form and map embed.</p>
+          </div>
+        </a>
+
+        <a href="#" target="_blank" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
+          <img 
+            src="assets/img/siddeshwara-idly-hotel.jpg" 
+            alt="Siddeshwara Idly Hotel website" 
+            class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" 
+          />
+          <div class="p-5">
+            <p class="font-semibold text-slate-900 flex items-center justify-between">
+              Siddeshwara Idly Hotel
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
+              </svg>
+            </p>
+            <p class="text-sm text-slate-600 mt-1">Menu, timings, and location.</p>
+          </div>
+        </a>
+
+        <a href="https://sidtech-git-org.github.io/healthcare_banashreeortho_davanagere/" target="_blank" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
+          <img src="assets/img/banashree-ortho.jpg" alt="Banashree Ortho & Trauma clinic website preview" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="p-5">
+            <p class="font-semibold text-slate-900 flex items-center justify-between">
+              Banashree Ortho & Trauma Center
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16"/></svg>
+            </p>
+            <p class="text-sm text-slate-600 mt-1">Orthopaedics + trauma clinic site with services & timings.</p>
+          </div>
+        </a>
+      </div>
     </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- AARAIKE -->
-      <a href="https://sidtech-git-org.github.io/healthcare_aaraike_hospital_davanagere/" target="_blank" class="card overflow-hidden hover:shadow-elev transition group">
-        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1200&auto=format&fit=crop" alt="Aaraike Hospital preview" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
-        <div class="p-5">
-          <p class="font-medium flex items-center justify-between">
-            Aaraike Super Speciality Hospital
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
-            </svg>
-          </p>
-          <p class="text-sm text-slate-600 mt-1">One-page hospital site with appointment form and map embed.</p>
-        </div>
-      </a>
-
-      <!-- GREENFIELD -->
-      <a href="#" target="_blank" class="card overflow-hidden hover:shadow-elev transition group">
-        <img src="https://images.unsplash.com/photo-1541317715259-879f6cf3f946?q=80&w=1200&auto=format&fit=crop" alt="School website" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
-        <div class="p-5">
-          <p class="font-medium flex items-center justify-between">
-            Greenfield Public School
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
-            </svg>
-          </p>
-          <p class="text-sm text-slate-600 mt-1">Courses, faculty, and admissions contact form.</p>
-        </div>
-      </a>
-
-      <!-- BANASHREE -->
-      <a href="https://sidtech-git-org.github.io/healthcare_banashreeortho_davanagere/" target="_blank" class="card overflow-hidden hover:shadow-elev transition group">
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop" alt="Clinic website" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
-        <div class="p-5">
-          <p class="font-medium flex items-center justify-between">
-            Banashree Ortho & Trauma
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
-            </svg>
-          </p>
-          <p class="text-sm text-slate-600 mt-1">Orthopaedics + trauma clinic site with services & timings.</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- PRICING -->
-  <section id="pricing" class="py-16 bg-slate-50">
-    <div class="mx-auto container px-4">
-      <div class="mb-6">
-        <h2 class="text-3xl font-semibold">Simple pricing</h2>
+  <section id="pricing" class="py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="mb-8">
+        <h2 class="text-3xl font-bold text-slate-900">Simple pricing</h2>
         <p class="text-slate-600">Pay once. Host free. Edit anytime.</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="card p-6 hover:shadow-elev transition">
-          <p class="font-semibold">Starter</p>
-          <p class="text-3xl mt-2">₹499</p>
+        <div class="glass rounded-2xl p-6 shadow-soft">
+          <p class="font-semibold text-slate-900">Starter</p>
+          <p class="text-3xl mt-2 text-sky-600">₹499</p>
           <ul class="mt-3 text-sm text-slate-600 list-disc pl-5">
             <li>One-page static site</li>
             <li>Contact/Appointment form</li>
@@ -233,15 +316,16 @@
             <li>GitHub Pages setup</li>
           </ul>
         </div>
-        <div class="card p-6 border-2 hover:shadow-elev transition" style="border-color:var(--accent)">
-          <p class="font-semibold">Professional</p>
-          <p class="text-3xl mt-2">₹999</p>
+        <div class="rounded-2xl p-6 shadow-elev border-2" style="border-color:var(--brand); background:#fff;">
+          <p class="font-semibold text-slate-900">Professional</p>
+          <p class="text-3xl mt-2 text-sky-600">₹999</p>
           <ul class="mt-3 text-sm text-slate-600 list-disc pl-5">
             <li>Everything in Starter package</li>
             <li>Custom branding pack</li>
             <li>WhatsApp with pre-filled message</li>
             <li>Domain + email setup help</li>
           </ul>
+          <a href="#contact" class="mt-4 inline-block btn btn-brand">Choose Professional</a>
         </div>
       </div>
     </div>
@@ -249,22 +333,22 @@
 
   <!-- FAQ -->
   <section id="faq" class="py-16">
-    <div class="mx-auto container px-4">
+    <div class="container mx-auto px-4 max-w-6xl">
       <div class="mb-6">
-        <h2 class="text-3xl font-semibold">FAQ</h2>
+        <h2 class="text-3xl font-bold text-slate-900">FAQ</h2>
         <p class="text-slate-600">Quick answers for common questions.</p>
       </div>
-      <div class="divide-y card">
+      <div class="divide-y rounded-2xl border border-slate-200 bg-white overflow-hidden">
         <details class="p-5" open>
-          <summary class="cursor-pointer font-medium">Is this really just one file?</summary>
+          <summary class="cursor-pointer font-semibold text-slate-900">Is this really just one file?</summary>
           <p class="mt-3 text-slate-600">Yes. Pure HTML + Tailwind CDN. Forms go through Formspree or Netlify Forms. No backend needed.</p>
         </details>
         <details class="p-5">
-          <summary class="cursor-pointer font-medium">Can I host it for free?</summary>
+          <summary class="cursor-pointer font-semibold text-slate-900">Can I host it for free?</summary>
           <p class="mt-3 text-slate-600">Absolutely. GitHub Pages or Netlify give free hosting with SSL.</p>
         </details>
         <details class="p-5">
-          <summary class="cursor-pointer font-medium">How fast can we launch?</summary>
+          <summary class="cursor-pointer font-semibold text-slate-900">How fast can we launch?</summary>
           <p class="mt-3 text-slate-600">Same day in most cases. We copy this base, change branding & content, and deploy.</p>
         </details>
       </div>
@@ -272,32 +356,26 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-16 bg-slate-50">
-    <div class="mx-auto container px-4">
+  <section id="contact" class="py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
       <div class="grid md:grid-cols-2 gap-8">
         <div>
-          <h2 class="text-3xl font-semibold text-slate-900">Start a project</h2>
-          <p class="mt-2 text-slate-600">Tell us a bit about your clinic/school and we’ll reply with a proposal.</p>
-          <!-- Replace action with your Formspree endpoint -->
-          <form action="https://formspree.io/f/xpwyjpve" method="POST" class="mt-5 grid gap-4 card p-4">
+          <h2 class="text-3xl font-bold text-slate-900">Start a project</h2>
+          <p class="mt-2 text-slate-600">Tell us about your clinic/school — we’ll reply with a proposal.</p>
+          <form action="https://formspree.io/f/xpwyjpve" method="POST" class="mt-5 grid gap-4 rounded-2xl border border-slate-200 bg-white p-4">
             <input name="name" required placeholder="Your name" class="w-full border rounded-lg px-3 py-2" />
             <input name="email" type="email" required placeholder="Email" class="w-full border rounded-lg px-3 py-2" />
             <input name="org" placeholder="Clinic/School name" class="w-full border rounded-lg px-3 py-2" />
             <textarea name="message" placeholder="What do you need?" class="w-full border rounded-lg px-3 py-2"></textarea>
-            <button type="submit" class="px-4 py-2 text-slate-600 btn g-brand shadow-soft hover:shadow-elev transition">Send</button>
-
+            <button type="submit" class="btn btn-brand shadow-soft">Send</button>
           </form>
           <p class="text-xs text-slate-500 mt-3">By submitting you agree to our <a href="#" class="underline">terms</a>.</p>
         </div>
         <div>
-          <div class="mt-4 card p-6">
-            <p class="font-semibold">Contact</p>
-            <p class="text-sm text-slate-600 mt-2">
-              ✉ <a class="underline hover:text-slate-900" href="mailto:info@sidtech.in">info@sidtech.in</a>
-            </p>
-            <p class="text-sm text-slate-600">
-              📞 <a class="underline hover:text-slate-900" href="tel:+919986187484">+91 9986187484</a>
-            </p>
+          <div class="glass rounded-2xl p-6 shadow-soft">
+            <p class="font-semibold text-slate-900">Contact</p>
+            <p class="text-sm text-slate-600 mt-2">✉ <a class="underline hover:text-slate-900" href="mailto:info@sidtech.in">info@sidtech.in</a></p>
+            <p class="text-sm text-slate-600">📞 <a class="underline hover:text-slate-900" href="tel:+919986187484">+91 9986187484</a></p>
           </div>
         </div>
       </div>
@@ -305,50 +383,47 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t">
-    <div class="mx-auto container px-4 py-10 grid md:grid-cols-4 gap-8 text-sm">
-      <div>
-        <img src="assets/img/sidtech-logo.jpg"
-          alt="SidTech"
-          class="logo h-10 w-auto rounded-xl shadow-soft"
-          height="40" />
-        <p class="mt-3 text-slate-600 max-w-sm">SidTech builds fast, affordable static websites for pretty much any businesses in the town. Pay once, launch fast, and use lifetime.</p>
+  <footer class="border-t border-slate-200 bg-white/80 backdrop-blur">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="py-10 grid md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <img src="assets/img/sidtech-logo.jpg" alt="SidTech" class="h-10 w-auto rounded-xl shadow-soft" height="40" />
+          <p class="mt-3 text-slate-600 max-w-sm">SidTech builds fast, affordable static websites for clinics, schools, and SMBs. Pay once, launch fast, and host free.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-900">Links</p>
+          <ul class="mt-3 space-y-2 text-slate-600">
+            <li><a href="#services" class="hover:underline">Services</a></li>
+            <li><a href="#work" class="hover:underline">Work</a></li>
+            <li><a href="#pricing" class="hover:underline">Pricing</a></li>
+            <li><a href="#contact" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-900">Legal</p>
+          <ul class="mt-3 space-y-2 text-slate-600">
+            <li><a href="#" class="hover:underline">Privacy policy</a></li>
+            <li><a href="#" class="hover:underline">Terms of service</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-900">Newsletter</p>
+          <p class="mt-2 text-slate-600">Occasional updates, no spam.</p>
+          <form action="https://formspree.io/f/xpwyjpve" method="POST" class="mt-3 flex gap-2">
+            <input name="email" type="email" required placeholder="Email address" class="flex-1 border rounded-lg px-3 py-2" />
+            <button type="submit" class="btn btn-brand shadow-soft">Subscribe</button>
+          </form>
+        </div>
       </div>
-      <div>
-        <p class="font-semibold">Links</p>
-        <ul class="mt-3 space-y-2 text-slate-600">
-          <li><a href="#services" class="hover:underline">Services</a></li>
-          <li><a href="#work" class="hover:underline">Work</a></li>
-          <li><a href="#pricing" class="hover:underline">Pricing</a></li>
-          <li><a href="#contact" class="hover:underline">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="font-semibold">Legal</p>
-        <ul class="mt-3 space-y-2 text-slate-600">
-          <li><a href="#" class="hover:underline">Privacy policy</a></li>
-          <li><a href="#" class="hover:underline">Terms of service</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="font-semibold">Newsletter</p>
-        <p class="mt-2 text-slate-600">Occasional product updates, no spam.</p>
-        <form action="https://formspree.io/f/xpwyjpve" method="POST" class="mt-3 flex gap-2">
-          <input name="email" type="email" required placeholder="Email address" class="flex-1 border rounded-lg px-3 py-2" />
-          <button type="submit" class="px-4 py-2 text-slate-600 btn g-brand shadow-soft hover:shadow-elev transition">Subscribe</button>
-        </form>
-      </div>
+      <div class="border-t py-4 text-center text-xs text-slate-500">© <span id="year"></span> SidTech. Built with the Static Base Template.</div>
     </div>
-    <div class="border-t py-4 text-center text-xs text-slate-500">© <span id="year"></span> SidTech. Built with the Static Base Template.</div>
   </footer>
 
-  <!-- Sticky WhatsApp CTA (updated number) -->
-  <!-- Floating WhatsApp Chat Button -->
-  <a href="https://wa.me/919986187484"
-    target="_blank"
-    class="fixed bottom-4 right-4 md:right-8 z-40 p-4 rounded-full shadow-soft hover:shadow-elev transition"
-    style="background-color: #25D366;">
-    <i class="fab fa-whatsapp text-white text-3xl"></i>
+  <!-- WhatsApp CTA -->
+  <a href="https://wa.me/919986187484" target="_blank"
+     class="fixed bottom-4 right-4 md:right-8 z-40 p-4 rounded-full shadow-soft hover:shadow-elev transition"
+     style="background-color:#25D366;">
+    <i class="fab fa-whatsapp text-white text-2xl"></i>
   </a>
 
   <script>
