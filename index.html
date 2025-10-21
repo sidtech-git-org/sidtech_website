@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SidTech — Websites for Clinics, Schools & SMBs</title>
-  <meta name="description" content="SidTech builds ultra-fast static websites for clinics, schools, and SMBs. Pay once. Host free on GitHub Pages or Netlify." />
+  <meta name="description"
+    content="SidTech builds ultra-fast static websites for clinics, schools, and SMBs. Pay once. Host free on GitHub Pages or Netlify." />
   <link rel="icon" type="image/jpeg" href="assets/img/favicon.jpg" />
 
   <!-- Inter font -->
@@ -51,80 +53,136 @@
   <link rel="stylesheet" href="assets/css/site.css" />
 
   <style>
-    :root{
-      --ink:#0f172a; --muted:#040405; --ring:#e2e8f0; --brand:#2563eb; --accent:#7c3aed;
+    :root {
+      --ink: #0f172a;
+      --muted: #040405;
+      --ring: #e2e8f0;
+      --brand: #2563eb;
+      --accent: #7c3aed;
     }
-    html,body{ height:100% }
-    body{ font-synthesis-weight:none; }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-synthesis-weight: none;
+    }
 
     /* ===== AURORA BACKGROUND ===== */
-    .bg-aurora{
-      position: fixed; inset: -10% -10% auto -10%;
-      height: 60vh; z-index: -1; pointer-events:none; filter: saturate(1.1) contrast(1.05);
+    .bg-aurora {
+      position: fixed;
+      inset: -10% -10% auto -10%;
+      height: 60vh;
+      z-index: -1;
+      pointer-events: none;
+      filter: saturate(1.1) contrast(1.05);
       background:
-        radial-gradient(40% 60% at 10% 20%, rgba(124,58,237,.18) 0%, rgba(124,58,237,0) 60%),
-        radial-gradient(50% 50% at 85% 15%, rgba(37,99,235,.18) 0%, rgba(37,99,235,0) 60%),
-        radial-gradient(60% 45% at 60% 80%, rgba(16,185,129,.16) 0%, rgba(16,185,129,0) 60%),
+        radial-gradient(40% 60% at 10% 20%, rgba(124, 58, 237, .18) 0%, rgba(124, 58, 237, 0) 60%),
+        radial-gradient(50% 50% at 85% 15%, rgba(37, 99, 235, .18) 0%, rgba(37, 99, 235, 0) 60%),
+        radial-gradient(60% 45% at 60% 80%, rgba(16, 185, 129, .16) 0%, rgba(16, 185, 129, 0) 60%),
         linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
       mask-image: radial-gradient(1200px 600px at 50% 0%, black 60%, transparent 100%);
     }
+
     /* dotted grid overlay for subtle texture */
-    .bg-grid:before{
-      content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.35;
+    .bg-grid:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .35;
       background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
       background-size: 16px 16px;
       mask-image: radial-gradient(900px 480px at 50% 0%, black 55%, transparent 100%);
     }
 
     /* ===== SURFACES ===== */
-    .glass{
-      background: rgba(255,255,255,.75);
+    .glass {
+      background: rgba(255, 255, 255, .75);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(226,232,240,.8);
+      border: 1px solid rgba(226, 232, 240, .8);
     }
-    .chip{
-      border:1px solid var(--ring);
-      background:#fff; border-radius:9999px; padding:.375rem .75rem;
-      box-shadow: 0 1px 0 rgba(0,0,0,.02) inset;
+
+    .chip {
+      border: 1px solid var(--ring);
+      background: #fff;
+      border-radius: 9999px;
+      padding: .375rem .75rem;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .02) inset;
     }
-    .btn{ border-radius:1rem; padding:.75rem 1rem; font-weight:600 }
-    .btn-brand{ background: linear-gradient(90deg, var(--brand), #3b82f6); color:#fff; }
-    .btn-brand:hover{ opacity:.95; box-shadow: 0 10px 22px rgba(37,99,235,.22) }
-    .btn-ghost{ background:#fff; border:1px solid var(--ring); color:var(--ink) }
-    .btn-ghost:hover{ background:#f8fafc }
+
+    .btn {
+      border-radius: 1rem;
+      padding: .75rem 1rem;
+      font-weight: 600
+    }
+
+    .btn-brand {
+      background: linear-gradient(90deg, var(--brand), #3b82f6);
+      color: #fff;
+    }
+
+    .btn-brand:hover {
+      opacity: .95;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, .22)
+    }
+
+    .btn-ghost {
+      background: #fff;
+      border: 1px solid var(--ring);
+      color: var(--ink)
+    }
+
+    .btn-ghost:hover {
+      background: #f8fafc
+    }
 
     /* marquee (updated) */
-    .marquee-track{
+    .marquee-track {
       display: flex;
       align-items: center;
       gap: 3rem;
-      width: max-content;     /* allows smooth looping width */
+      width: max-content;
+      /* allows smooth looping width */
       /* no animation here because you're already using Tailwind's animate-marquee class */
     }
-    .logo{
+
+    .logo {
       height: 28px;
       display: inline-block;
       object-fit: contain;
-      opacity: 1;             /* fully visible */
-      filter: none;           /* remove grayscale/contrast filter */
+      opacity: 1;
+      /* fully visible */
+      filter: none;
+      /* remove grayscale/contrast filter */
     }
+
     /* tech logos uniform size */
     .tech-logo {
-      height: 64px; /* larger and more visible */
+      height: 64px;
+      /* larger and more visible */
       width: auto;
       object-fit: contain;
       filter: none;
       opacity: 1;
     }
+
     /* slightly larger Tailwind & Netlify icons */
     .tech-logo.logo-large {
-      height: 78px; /* try 72px or 80px depending on your taste */
+      height: 78px;
+      /* try 72px or 80px depending on your taste */
     }
+
     /* smaller Formspree logo */
     .tech-logo.logo-small {
-      height: 38px; /* around 40% smaller than 64px */
+      height: 38px;
+      /* around 40% smaller than 64px */
     }
+
     /* glass chip style for 'Our Tools' */
     .chip {
       display: inline-flex;
@@ -149,12 +207,14 @@
 
     .tech-heading i {
       font-size: 1.1rem;
-      color: #2563eb; /* brand blue accent */
+      color: #2563eb;
+      /* brand blue accent */
     }
 
     #contact i {
       transition: transform 0.3s ease, color 0.3s ease;
     }
+
     #contact a:hover i {
       transform: scale(1.2);
       color: var(--brand);
@@ -165,17 +225,19 @@
       position: relative;
       padding: 0.5rem 1rem;
       border-radius: 0.75rem;
-      color: #334155; /* slate-700 */
-      background: rgba(255,255,255,0.4);
+      color: #334155;
+      /* slate-700 */
+      background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       transition: all 0.3s ease;
     }
 
     .nav-link:hover {
-      color: #0f172a; /* slate-900 */
-      background: rgba(255,255,255,0.7);
-      box-shadow: 0 0 12px rgba(37,99,235,0.25);
+      color: #0f172a;
+      /* slate-900 */
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.25);
       transform: translateY(-1px);
     }
 
@@ -199,7 +261,6 @@
     .nav-link:hover::after {
       width: 60%;
     }
-
   </style>
 </head>
 
@@ -225,7 +286,9 @@
         <div class="flex items-center gap-3">
           <a href="#contact" class="hidden sm:inline-block btn btn-brand shadow-soft">Start a Project</a>
           <button id="menuBtn" class="md:hidden p-2 rounded-xl border border-slate-200" aria-label="Toggle menu">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#334155" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke="#334155" stroke-width="2" stroke-linecap="round" />
+            </svg>
           </button>
         </div>
       </div>
@@ -251,10 +314,13 @@
             <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Launch in a day
           </span>
           <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 text-slate-900">
-            Websites that feel <span class="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 bg-clip-text text-transparent">premium</span> — without premium headaches.
+            Websites that feel <span
+              class="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 bg-clip-text text-transparent">premium</span>
+            — without premium headaches.
           </h1>
           <p class="mt-4 text-lg text-slate-600 max-w-prose">
-            We build ultra-fast, maintenance-light websites for Hospitals, Schools, and pretty much any businesses in the town.
+            We build ultra-fast, maintenance-light websites for Hospitals, Schools, and pretty much any businesses in
+            the town.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="#contact" class="btn btn-brand shadow-soft">Get a proposal</a>
@@ -267,8 +333,8 @@
         </div>
         <div>
           <div class="relative">
-            <img src="assets/img/sidtech-webimage.png"
-                 alt="Website preview mock" class="rounded-3xl shadow-elev animate-float" />
+            <img src="assets/img/sidtech-webimage.png" alt="Website preview mock"
+              class="rounded-3xl shadow-elev animate-float" />
             <div class="absolute -bottom-6 -left-6 glass rounded-2xl p-4 w-64">
               <p class="text-sm text-slate-600">Average setup time</p>
               <p class="text-2xl font-semibold text-emerald-600"><span>&lt; 24 hours</span></p>
@@ -287,10 +353,10 @@
         </div>
 
         <div class="flex flex-wrap justify-center items-center gap-10 px-5">
-          <img class="tech-logo logo-large" src="assets/img/logos/tailwind.png"  alt="Tailwind CSS" />
-          <img class="tech-logo" src="assets/img/logos/github.png"    alt="GitHub" />
-          <img class="tech-logo" src="assets/img/logos/html5.png"     alt="HTML5" />
-          <img class="tech-logo logo-large" src="assets/img/logos/netlify.png"   alt="Netlify" />
+          <img class="tech-logo logo-large" src="assets/img/logos/tailwind.png" alt="Tailwind CSS" />
+          <img class="tech-logo" src="assets/img/logos/github.png" alt="GitHub" />
+          <img class="tech-logo" src="assets/img/logos/html5.png" alt="HTML5" />
+          <img class="tech-logo logo-large" src="assets/img/logos/netlify.png" alt="Netlify" />
           <img class="tech-logo logo-small" src="assets/img/logos/formspree.png" alt="Formspree" />
         </div>
       </div>
@@ -308,7 +374,8 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="glass rounded-2xl p-6 shadow-soft">
           <p class="font-semibold text-slate-900">One-page Static Sites</p>
-          <p class="text-sm text-slate-600 mt-2">Perfect for Hospitals, Schools, and local businesses. Blazing fast and secure.</p>
+          <p class="text-sm text-slate-600 mt-2">Perfect for Hospitals, Schools, and local businesses. Blazing fast and
+            secure.</p>
         </div>
         <div class="glass rounded-2xl p-6 shadow-soft">
           <p class="font-semibold text-slate-900">Contact & Appointment Forms</p>
@@ -328,7 +395,7 @@
         </div>
         <div class="glass rounded-2xl p-6 shadow-soft">
           <p class="font-semibold text-slate-900">Free/Custom Hosting Setup</p>
-          <p class="text-sm text-slate-600 mt-2">GitHub Pages / Domain deployment included.</p>
+          <p class="text-sm text-slate-600 mt-2">GitHub Pages/Domain deployment included.</p>
         </div>
       </div>
     </div>
@@ -343,27 +410,31 @@
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a href="https://sidtech-git-org.github.io/healthcare_aaraike_hospital_davanagere/" target="_blank" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
-        <img src="assets/img/aaraike-hospital.png" alt="Aaraike Hospital Logo" class="w-full h-48 object-contain bg-white rounded-t-2xl p-4" />
+        <a href="https://sidtech-git-org.github.io/healthcare_aaraike_hospital_davanagere/" target="_blank"
+          class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
+          <img src="assets/img/aaraike-hospital.png" alt="Aaraike Hospital Logo"
+            class="w-full h-48 object-contain bg-white rounded-t-2xl p-4" />
           <div class="p-5">
             <p class="font-semibold text-slate-900 flex items-center justify-between">
               Aaraike Super Speciality Hospital
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
+              </svg>
             </p>
             <p class="text-sm text-slate-600 mt-1">One-page hospital site with appointment form and map embed.</p>
           </div>
         </a>
 
-        <a href="https://sidtech-git-org.github.io/hotel_siddeshwara_idly_hotel_davanagere/" target="_blank" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
-          <img 
-            src="assets/img/siddeshwara-idly-hotel.jpg" 
-            alt="Siddeshwara Idly Hotel website" 
-            class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" 
-          />
+        <a href="https://sidtech-git-org.github.io/hotel_siddeshwara_idly_hotel_davanagere/" target="_blank"
+          class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
+          <img src="assets/img/siddeshwara-idly-hotel.jpg" alt="Siddeshwara Idly Hotel website"
+            class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
           <div class="p-5">
             <p class="font-semibold text-slate-900 flex items-center justify-between">
               Siddeshwara Idly Hotel
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
               </svg>
             </p>
@@ -371,12 +442,18 @@
           </div>
         </a>
 
-        <a href="https://sidtech-git-org.github.io/healthcare_banashreeortho_davanagere/" target="_blank" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
-          <img src="assets/img/banashree-ortho.jpg" alt="Banashree Ortho & Trauma Center" class="w-full h-44 sm:h-48 object-cover object-[center_25%] rounded-t-2xl group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+        <a href="https://sidtech-git-org.github.io/healthcare_banashreeortho_davanagere/" target="_blank"
+          class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-elev transition">
+          <img src="assets/img/banashree-ortho.jpg" alt="Banashree Ortho & Trauma Center"
+            class="w-full h-44 sm:h-48 object-cover object-[center_25%] rounded-t-2xl group-hover:scale-105 transition-transform duration-500"
+            loading="lazy" />
           <div class="p-5">
             <p class="font-semibold text-slate-900 flex items-center justify-between">
               Banashree Ortho & Trauma Center
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-slate-600"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 16" />
+              </svg>
             </p>
             <p class="text-sm text-slate-600 mt-1">Orthopaedics + trauma clinic site with services & timings.</p>
           </div>
@@ -403,16 +480,19 @@
             <li>• Single-page static site (up to 5 sections)</li>
             <li>• Contact form (Formspree)</li>
             <li>• Google Map embed</li>
-            
+
             <li>• Free hosting setup (GitHub Pages / Netlify)</li>
             <li>• 1 round of edits · Delivery: 3–4 days</li>
           </ul>
-          <a href="#contact" class="mt-5 inline-block btn btn-ghost choose-plan" data-plan="Basic" data-price="₹499">Choose Basic</a>
+          <a href="#contact" class="mt-5 inline-block btn btn-ghost choose-plan" data-plan="Basic"
+            data-price="₹499">Choose Basic</a>
         </div>
 
         <!-- ADVANCE (Most popular) -->
         <div class="relative rounded-2xl p-6 shadow-elev border-2" style="border-color:var(--brand); background:#fff;">
-          <span class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs px-3 py-1 rounded-full bg-sky-600 text-white shadow-soft">Most popular</span>
+          <span
+            class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs px-3 py-1 rounded-full bg-sky-600 text-white shadow-soft">Most
+            popular</span>
           <p class="font-semibold text-slate-900">Advance</p>
           <p class="text-3xl mt-2 text-sky-600">₹999</p>
           <p class="text-xs text-slate-500 mt-1">Best value for small businesses</p>
@@ -425,7 +505,8 @@
             <li>• Custom domain & email setup help</li>
             <li>• 2 rounds of edits · Delivery: 5–7 days</li>
           </ul>
-          <a href="#contact" class="mt-5 inline-block btn btn-brand choose-plan" data-plan="Advance" data-price="₹999">Choose Advance</a>
+          <a href="#contact" class="mt-5 inline-block btn btn-brand choose-plan" data-plan="Advance"
+            data-price="₹999">Choose Advance</a>
         </div>
 
         <!-- PROFESSIONAL -->
@@ -443,161 +524,182 @@
             <li>• Priority support for 30 days</li>
             <li>• 3 rounds of edits · Delivery: 5–7 days</li>
           </ul>
-          <a href="#contact" class="mt-5 inline-block btn btn-ghost choose-plan" data-plan="Professional" data-price="₹1,999">Choose Professional</a>
+          <a href="#contact" class="mt-5 inline-block btn btn-ghost choose-plan" data-plan="Professional"
+            data-price="₹1,999">Choose Professional</a>
         </div>
       </div>
 
       <p class="text-center text-xs text-slate-500 mt-6">
-        All plans use our fast, secure static stack (HTML + Tailwind, Formspree, GitHub Pages/Netlify). Prices exclude paid third-party add-ons (custom domain, email providers, premium forms, etc.).
+        All plans use our fast, secure static stack (HTML + Tailwind, Formspree, GitHub Pages/Netlify). Prices exclude
+        paid third-party add-ons (custom domain, email providers, premium forms, etc.).
       </p>
     </div>
   </section>
 
-<!-- CONTACT -->
-<section id="contact" class="py-20 bg-gradient-to-b from-slate-50/70 to-white/80">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <div class="grid md:grid-cols-2 gap-10 items-start">
-      <!-- Left: Form -->
-      <div>
-        <h2 class="text-4xl font-extrabold text-slate-900">Start a Project</h2>
-        <p class="mt-3 text-lg text-slate-600">
-          Tell us about your requirements — we’ll reach out with a proposal within 24 hours.
-        </p>
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-gradient-to-b from-slate-50/70 to-white/80">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <!-- Left: Form -->
+        <div>
+          <h2 class="text-4xl font-extrabold text-slate-900">Start a Project</h2>
+          <p class="mt-3 text-lg text-slate-600">
+            Tell us about your requirements — we’ll reach out with a proposal within 24 hours.
+          </p>
 
-        <form
-          id="contactForm"
-          action="https://formspree.io/f/xpwyjpve"
-          method="POST"
-          class="mt-5 grid gap-4 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-4"
-          onsubmit="return handleSubmit(event)"
-        >
-        <script>
-          async function handleSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
-            const emailField = document.getElementById("emailField");
-            const formData = new FormData(form);
+          <form id="contactForm" action="https://formspree.io/f/xpwyjpve" method="POST"
+            class="mt-5 grid gap-4 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-4">
 
-            // Run email validation before sending
-            if (!validateEmail(event)) return false;
+            <select name="plan" id="planSelect" class="w-full border rounded-lg px-3 py-2" required>
+              <option value="">Select a plan</option>
+              <option value="Basic">Basic</option>
+              <option value="Advance">Advance</option>
+              <option value="Professional">Professional</option>
+            </select>
+            <input name="price" id="priceField" placeholder="Quoted price" class="w-full border rounded-lg px-3 py-2"
+              readonly />
+            <input name="name" required placeholder="Your name" class="w-full border rounded-lg px-3 py-2" />
+            <input id="emailField" name="email" type="email" required placeholder="Email"
+              class="w-full border rounded-lg px-3 py-2" />
+            <input name="org" placeholder="Business name/type" class="w-full border rounded-lg px-3 py-2" />
+            <textarea name="message" placeholder="What do you need?"
+              class="w-full border rounded-lg px-3 py-2"></textarea>
+            <button type="submit" class="btn btn-brand shadow-soft">Send</button>
+          </form>
 
-            try {
-              const response = await fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: { Accept: "application/json" }
-              });
+          <script>
+              // Inline submit + success view + "Start another project" reset (no page refresh)
+              (() => {
+                const form = document.getElementById('contactForm');
+                if (!form) return;
 
-              if (response.ok) {
-                // Replace form content with a success message
-                form.innerHTML = `
-                  <div class="text-center py-10">
-                    <div class="text-3xl mb-3">🎉</div>
-                    <h3 class="text-2xl font-semibold text-sky-700">Great move!</h3>
-                    <p class="text-slate-700 mt-2">SidTech will contact you within 24 hours.</p>
-                  </div>`;
-              } else {
-                alert("Oops! Something went wrong while submitting the form. Please try again.");
-              }
-            } catch (err) {
-              alert("Network error — please check your connection and try again.");
-            }
+                // Save original form markup so we can restore it after success
+                if (!form.dataset.original) form.dataset.original = form.innerHTML;
 
-            return false; // Prevent normal form redirect
-          }
-        </script>
+                async function handleContactSubmit(e) {
+                  e.preventDefault();
+                  if (!validateEmail(e)) return;
 
-          <select name="plan" id="planSelect" class="w-full border rounded-lg px-3 py-2" required>
-          <option value="">Select a plan</option>
-          <option value="Basic">Basic</option>
-          <option value="Advance">Advance</option>
-          <option value="Professional">Professional</option>
-          </select>
-          <input name="price" id="priceField" placeholder="Quoted price" class="w-full border rounded-lg px-3 py-2" readonly />
-          <input name="name" required placeholder="Your name" class="w-full border rounded-lg px-3 py-2" />
-          <input id="emailField" name="email" type="email" required placeholder="Email" class="w-full border rounded-lg px-3 py-2" />
-          <input name="org" placeholder="Business name/type" class="w-full border rounded-lg px-3 py-2" />
-          <textarea name="message" placeholder="What do you need?" class="w-full border rounded-lg px-3 py-2"></textarea>
-          <button type="submit" class="btn btn-brand shadow-soft">Send</button>
-        </form>
+                  const data = new FormData(form);
+                  try {
+                    const res = await fetch(form.action, {
+                      method: form.method,
+                      body: data,
+                      headers: { Accept: 'application/json' }
+                    });
 
-        <script>
-          function validateEmail(event) {
-            const emailField = document.getElementById("emailField");
-            const email = emailField.value.trim();
+                    if (res.ok) {
+                      form.innerHTML = `
+            <div class="text-center py-10">
+              <div class="text-3xl mb-3">🎉</div>
+              <h3 class="text-2xl font-semibold text-sky-700">Great move!</h3>
+              <p class="text-slate-700 mt-2">SidTech will contact you within 24 hours.</p>
+              <button id="submitAnother" type="button" class="mt-6 btn btn-ghost">Start another project</button>
+            </div>`;
 
-            // Correct regex: single backslashes inside the literal
-            const validPattern = /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                      // Handle "Start another project" (restore original form)
+                      document.getElementById('submitAnother')?.addEventListener('click', () => {
+                        form.innerHTML = form.dataset.original || '';
 
-            // Known fake/disposable domains (keep this small + focused)
-            const banned = new Set([
-              "test.com","example.com","example.org","example.net",
-              "mailinator.com","yopmail.com","tempmail.com",
-              "10minutemail.com","dispostable.com","fakeinbox.com"
-            ]);
+                        // Re-attach submit handler to the restored form
+                        form.addEventListener('submit', handleContactSubmit);
 
-            if (!validPattern.test(email)) {
-              alert("Please enter a valid email address (e.g., name@example.com).");
-              emailField.focus();
-              event.preventDefault();
-              return false;
-            }
+                        // Re-attach plan dropdown listener & sync price
+                        const newPlanSelect = document.getElementById('planSelect');
+                        newPlanSelect?.addEventListener('change', (ev) => setPlan(ev.target.value));
+                        setPlan(document.getElementById('planSelect')?.value || '');
 
-            const domain = email.split("@")[1].toLowerCase();
+                        // Focus first field
+                        form.querySelector('input[name="name"]')?.focus();
+                      });
+                    } else {
+                      alert('Oops! Something went wrong while submitting the form. Please try again.');
+                    }
+                  } catch {
+                    alert('Network error — please check your connection and try again.');
+                  }
+                }
 
-            // Block exact domain or any of its subdomains (e.g., a.mailinator.com)
-            for (const bad of banned) {
-              if (domain === bad || domain.endsWith("." + bad)) {
-                alert("Please use a real email provider (Gmail, Outlook, Yahoo, your company domain, etc.).");
+                // Attach the submit handler once on page load
+                form.addEventListener('submit', handleContactSubmit);
+              })();
+          </script>
+
+          <script>
+            function validateEmail(event) {
+              const emailField = document.getElementById("emailField");
+              const email = emailField.value.trim();
+
+              // Correct regex: single backslashes inside the literal
+              const validPattern = /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+              // Known fake/disposable domains (keep this small + focused)
+              const banned = new Set([
+                "test.com", "example.com", "example.org", "example.net",
+                "mailinator.com", "yopmail.com", "tempmail.com",
+                "10minutemail.com", "dispostable.com", "fakeinbox.com"
+              ]);
+
+              if (!validPattern.test(email)) {
+                alert("Please enter a valid email address (e.g., name@example.com).");
                 emailField.focus();
                 event.preventDefault();
                 return false;
               }
+
+              const domain = email.split("@")[1].toLowerCase();
+
+              // Block exact domain or any of its subdomains (e.g., a.mailinator.com)
+              for (const bad of banned) {
+                if (domain === bad || domain.endsWith("." + bad)) {
+                  alert("Please use a real email provider (Gmail, Outlook, Yahoo, your company domain, etc.).");
+                  emailField.focus();
+                  event.preventDefault();
+                  return false;
+                }
+              }
+
+              return true;
             }
+          </script>
 
-            return true;
-          }
-        </script>
+          <p class="text-xs text-slate-500 mt-4">
+            By submitting, you agree to our
+            <a href="terms.html" class="underline hover:text-slate-900">terms</a>.
+          </p>
+        </div>
 
-        <p class="text-xs text-slate-500 mt-4">
-          By submitting, you agree to our
-          <a href="terms.html" class="underline hover:text-slate-900">terms</a>.
-        </p>
-      </div>
+        <!-- Right: Contact info -->
+        <div>
+          <div class="rounded-2xl p-8 shadow-soft glass border border-slate-200/60"
+            style="background: rgba(255,255,255,0.65); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+            <h3 class="text-2xl font-semibold text-slate-900 flex items-center gap-3">
+              <i class="fa-solid fa-address-book text-sky-600 text-3xl"></i>
+              Contact
+            </h3>
 
-      <!-- Right: Contact info -->
-      <div>
-        <div
-          class="rounded-2xl p-8 shadow-soft glass border border-slate-200/60"
-          style="background: rgba(255,255,255,0.65); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
-        >
-          <h3 class="text-2xl font-semibold text-slate-900 flex items-center gap-3">
-            <i class="fa-solid fa-address-book text-sky-600 text-3xl"></i>
-            Contact
-          </h3>
+            <div class="mt-6 space-y-5">
+              <p class="flex items-center gap-4 text-slate-800 text-xl font-medium">
+                <i class="fa-solid fa-envelope text-sky-600 text-2xl"></i>
+                <a href="mailto:info@sidtech.in" class="hover:text-sky-700 transition">info@sidtech.in</a>
+              </p>
 
-          <div class="mt-6 space-y-5">
-            <p class="flex items-center gap-4 text-slate-800 text-xl font-medium">
-              <i class="fa-solid fa-envelope text-sky-600 text-2xl"></i>
-              <a href="mailto:info@sidtech.in" class="hover:text-sky-700 transition">info@sidtech.in</a>
-            </p>
+              <p class="flex items-center gap-4 text-slate-800 text-xl font-medium">
+                <i class="fa-solid fa-phone text-sky-600 text-2xl"></i>
+                <a href="tel:+919986187484" class="hover:text-sky-700 transition">+91 9986187484</a>
+              </p>
 
-            <p class="flex items-center gap-4 text-slate-800 text-xl font-medium">
-              <i class="fa-solid fa-phone text-sky-600 text-2xl"></i>
-              <a href="tel:+919986187484" class="hover:text-sky-700 transition">+91 9986187484</a>
-            </p>
-
-            <p class="flex items-center gap-4 text-slate-800 text-xl font-medium">
-              <i class="fa-solid fa-phone text-sky-600 text-2xl"></i> 
-              <a href="tel:+919482244559" class="hover:text-sky-700 transition">+91 9482244559</a>
-            </p>
+              <p class="flex items-center gap-4 text-slate-800 text-xl font-medium">
+                <i class="fa-solid fa-phone text-sky-600 text-2xl"></i>
+                <a href="tel:+919482244559" class="hover:text-sky-700 transition">+91 9482244559</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- END CONTACT -->
+  </section>
+  <!-- END CONTACT -->
 
   <!-- FAQ -->
   <section id="faq" class="py-16">
@@ -609,7 +711,8 @@
       <div class="divide-y rounded-2xl border border-slate-200 bg-white overflow-hidden">
         <details class="p-5" open>
           <summary class="cursor-pointer font-semibold text-slate-900">Is this really just one file?</summary>
-          <p class="mt-3 text-slate-600">Yes. Pure HTML + Tailwind CDN. Forms go through Formspree or Netlify Forms. No backend needed.</p>
+          <p class="mt-3 text-slate-600">Yes. Pure HTML + Tailwind CDN. Forms go through Formspree or Netlify Forms. No
+            backend needed.</p>
         </details>
         <details class="p-5">
           <summary class="cursor-pointer font-semibold text-slate-900">Can I host it for free?</summary>
@@ -617,7 +720,8 @@
         </details>
         <details class="p-5">
           <summary class="cursor-pointer font-semibold text-slate-900">How fast can we launch?</summary>
-          <p class="mt-3 text-slate-600">Within 24 hours in most cases. Delivery time varies if further customisations are required.</p>
+          <p class="mt-3 text-slate-600">Within 24 hours in most cases. Delivery time varies if further customisations
+            are required.</p>
         </details>
         <details class="p-5">
           <summary class="cursor-pointer font-semibold text-slate-900">What are your charges?</summary>
@@ -627,65 +731,107 @@
     </div>
   </section>
 
-<!-- FOOTER -->
-<footer class="border-t border-slate-200 bg-white/80 backdrop-blur">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <div class="py-10 grid md:grid-cols-4 gap-8 text-sm">
-      <div>
-        <img src="assets/img/sidtech-logo.jpg" alt="SidTech" class="h-10 w-auto rounded-xl shadow-soft" height="40" />
-        <p class="mt-3 text-slate-600 max-w-sm">SidTech builds fast, affordable websites for Hospitals, Schools, and pretty much any businesses. Pay once, launch fast, and host free.</p>
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 bg-white/80 backdrop-blur">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="py-10 grid md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <img src="assets/img/sidtech-logo.jpg" alt="SidTech" class="h-10 w-auto rounded-xl shadow-soft" height="40" />
+          <p class="mt-3 text-slate-600 max-w-sm">SidTech builds fast, affordable websites for Hospitals, Schools, and
+            pretty much any businesses. Pay once, launch fast, and host free.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-900">Links</p>
+          <ul class="mt-3 space-y-2 text-slate-600">
+            <li><a href="#services" class="hover:underline">Services</a></li>
+            <li><a href="#work" class="hover:underline">Our works</a></li>
+            <li><a href="#pricing" class="hover:underline">Pricing</a></li>
+            <li><a href="#contact" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-900">Legal</p>
+          <ul class="mt-3 space-y-2 text-slate-600">
+            <li><a href="privacy.html" class="hover:underline">Privacy policy</a></li>
+            <li><a href="terms.html" class="hover:underline">Terms of service</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-900">Newsletter</p>
+          <p class="mt-2 text-slate-600">Occasional updates, no spam.</p>
+          <form action="https://formspree.io/f/mpwynjpe" method="POST" class="mt-3 flex gap-2">
+            <!-- Helpful metadata -->
+            <input type="hidden" name="_subject" value="New newsletter subscriber" />
+            <input type="hidden" name="form" value="Newsletter Footer" />
+            <!-- Honeypot anti-spam (bots fill it; humans don’t) -->
+            <input type="text" name="_honeypot" tabindex="-1" autocomplete="off"
+              style="position:absolute;left:-10000px;" aria-hidden="true">
+            <input name="email" type="email" required placeholder="Email address"
+              class="flex-1 border rounded-lg px-3 py-2" />
+            <button type="submit" class="btn btn-brand shadow-soft">Subscribe</button>
+          </form>
+
+          <script>
+            // Newsletter: inline submit + success view + "Subscribe another email" reset
+            (() => {
+              const form = document.querySelector('form[action^="https://formspree.io/f/mpwynjpe"]');
+              if (!form) return;
+
+              // Save original markup so we can restore it later
+              if (!form.dataset.original) form.dataset.original = form.innerHTML;
+
+              async function handleNewsletterSubmit(e) {
+                e.preventDefault();
+                const data = new FormData(form);
+
+                try {
+                  const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { Accept: 'application/json' }
+                  });
+
+                  if (res.ok) {
+                    form.innerHTML = `
+            <div class="text-sky-700" aria-live="polite">
+              🎉 Thanks! You’re on the list.
+            </div>
+            <button id="newsletterAnother" type="button" class="mt-3 btn btn-ghost">
+              Subscribe another email
+            </button>
+          `;
+
+                    // Restore original form when clicking the button
+                    document.getElementById('newsletterAnother')?.addEventListener('click', () => {
+                      form.innerHTML = form.dataset.original || '';
+                      // Re-attach the submit handler to the restored form
+                      form.addEventListener('submit', handleNewsletterSubmit);
+                      // Focus the email field
+                      form.querySelector('input[name="email"]')?.focus();
+                    });
+                  } else {
+                    alert('Submission failed. Please try again.');
+                  }
+                } catch {
+                  alert('Network error. Please try again.');
+                }
+              }
+
+              form.addEventListener('submit', handleNewsletterSubmit);
+            })();
+          </script>
+
+        </div>
       </div>
-      <div>
-        <p class="font-semibold text-slate-900">Links</p>
-        <ul class="mt-3 space-y-2 text-slate-600">
-          <li><a href="#services" class="hover:underline">Services</a></li>
-          <li><a href="#work" class="hover:underline">Our works</a></li>
-          <li><a href="#pricing" class="hover:underline">Pricing</a></li>
-          <li><a href="#contact" class="hover:underline">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="font-semibold text-slate-900">Legal</p>
-        <ul class="mt-3 space-y-2 text-slate-600">
-          <li><a href="privacy.html" class="hover:underline">Privacy policy</a></li>
-          <li><a href="terms.html" class="hover:underline">Terms of service</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="font-semibold text-slate-900">Newsletter</p>
-        <p class="mt-2 text-slate-600">Occasional updates, no spam.</p>
-        <form action="https://formspree.io/f/mpwynjpe" method="POST" class="mt-3 flex gap-2">
-          <!-- Helpful metadata -->
-          <input type="hidden" name="_subject" value="New newsletter subscriber" />
-          <input type="hidden" name="form" value="Newsletter Footer" />
-          <!-- Honeypot anti-spam (bots fill it; humans don’t) -->
-          <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;" aria-hidden="true">
-          <input name="email" type="email" required placeholder="Email address" class="flex-1 border rounded-lg px-3 py-2" />
-          <button type="submit" class="btn btn-brand shadow-soft">Subscribe</button>
-        </form>
-        <script>
-          document.querySelector('form[action^="https://formspree.io/f/mpwynjpe"]')
-            ?.addEventListener('submit', async (e) => {
-              e.preventDefault();
-              const form = e.currentTarget;
-              const data = new FormData(form);
-              try {
-                const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-                if (res.ok) form.innerHTML = '<p class="text-sky-700">Thanks! You’re on the list.</p>';
-                else alert('Submission failed. Please try again.');
-              } catch { alert('Network error. Please try again.'); }
-            });
-        </script>
-      </div>
+      <div class="border-t py-4 text-center text-xs text-slate-500">© <span id="year"></span> SidTech. All rights
+        reserved.</div>
     </div>
-    <div class="border-t py-4 text-center text-xs text-slate-500">© <span id="year"></span> SidTech. All rights reserved.</div>
-  </div>
-</footer>
+  </footer>
 
   <!-- WhatsApp CTA -->
   <a href="https://wa.me/919986187484" target="_blank"
-     class="fixed bottom-4 right-4 md:right-8 z-40 p-4 rounded-full shadow-soft hover:shadow-elev transition"
-     style="background-color:#25D366;">
+    class="fixed bottom-4 right-4 md:right-8 z-40 p-4 rounded-full shadow-soft hover:shadow-elev transition"
+    style="background-color:#25D366;">
     <i class="fab fa-whatsapp text-white text-2xl"></i>
   </a>
 
@@ -696,53 +842,54 @@
     // Mobile menu toggle
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
-    function toggleMenu(){ mobileNav.classList.toggle('hidden'); }
+    function toggleMenu() { mobileNav.classList.toggle('hidden'); }
     menuBtn?.addEventListener('click', toggleMenu);
 
-  // --- Pricing → Contact form prefill (with dropdown support) ---
-  const PLAN_PRICES = {
-    "Basic": "₹499",
-    "Advance": "₹999",
-    "Professional": "₹1,999"
-  };
+    // --- Pricing → Contact form prefill (with dropdown support) ---
+    const PLAN_PRICES = {
+      "Basic": "₹499",
+      "Advance": "₹999",
+      "Professional": "₹1,999"
+    };
 
-  const planSelect = document.getElementById('planSelect');    // dropdown
-  const priceField = document.getElementById('priceField');    // readonly price
+    const planSelect = document.getElementById('planSelect');    // dropdown
+    const priceField = document.getElementById('priceField');    // readonly price
 
-  // Set plan + price (used by buttons, dropdown, and URL params)
-  function setPlan(plan, priceOverride) {
-    if (!planSelect || !priceField) return;
+    // Set plan + price (used by buttons, dropdown, and URL params)
+    function setPlan(plan, priceOverride) {
+      if (!planSelect || !priceField) return;
 
-    // Set dropdown value if provided; otherwise leave as-is
-    if (plan) planSelect.value = plan;
+      // Set dropdown value if provided; otherwise leave as-is
+      if (plan) planSelect.value = plan;
 
-    // Decide price: explicit override > mapping > blank
-    const resolvedPrice = priceOverride || PLAN_PRICES[planSelect.value] || '';
-    priceField.value = resolvedPrice;
-  }
+      // Decide price: explicit override > mapping > blank
+      const resolvedPrice = priceOverride || PLAN_PRICES[planSelect.value] || '';
+      priceField.value = resolvedPrice;
+    }
 
-  // Dropdown change → update price
-  planSelect?.addEventListener('change', (e) => setPlan(e.target.value));
+    // Dropdown change → update price
+    planSelect?.addEventListener('change', (e) => setPlan(e.target.value));
 
-  // Handle clicks on "Choose ..." buttons in the pricing cards
-  document.querySelectorAll('.choose-plan').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      const plan  = el.getAttribute('data-plan') || '';
-      const price = el.getAttribute('data-price') || ''; // if present, it wins
-      setPlan(plan, price);
+    // Handle clicks on "Choose ..." buttons in the pricing cards
+    document.querySelectorAll('.choose-plan').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const plan = el.getAttribute('data-plan') || '';
+        const price = el.getAttribute('data-price') || ''; // if present, it wins
+        setPlan(plan, price);
 
-      // Smooth scroll to contact section
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      history.replaceState(null, '', '#contact');
+        // Smooth scroll to contact section
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        history.replaceState(null, '', '#contact');
+      });
     });
-  });
 
-  // Optional: support URL params like ?plan=Advance or ?plan=Advance&price=₹999
-  const params = new URLSearchParams(location.search);
-  if (params.has('plan') || params.has('price')) {
-    setPlan(params.get('plan') || '', params.get('price') || '');
-  }
+    // Optional: support URL params like ?plan=Advance or ?plan=Advance&price=₹999
+    const params = new URLSearchParams(location.search);
+    if (params.has('plan') || params.has('price')) {
+      setPlan(params.get('plan') || '', params.get('price') || '');
+    }
   </script>
 </body>
+
 </html>
