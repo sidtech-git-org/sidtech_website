@@ -219,8 +219,8 @@
           <a href="#services" class="nav-link">Services</a>
           <a href="#work" class="nav-link">Our works</a>
           <a href="#pricing" class="nav-link">Pricing</a>
-          <a href="#faq" class="nav-link">FAQ</a>
           <a href="#contact" class="nav-link">Contact</a>
+          <a href="#faq" class="nav-link">FAQ's</a>
         </nav>
         <div class="flex items-center gap-3">
           <a href="#contact" class="hidden sm:inline-block btn btn-brand shadow-soft">Start a Project</a>
@@ -453,35 +453,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="py-16">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="mb-6">
-        <h2 class="text-3xl font-bold text-slate-900">FAQ's</h2>
-        <p class="text-slate-600">Quick answers for common questions.</p>
-      </div>
-      <div class="divide-y rounded-2xl border border-slate-200 bg-white overflow-hidden">
-        <details class="p-5" open>
-          <summary class="cursor-pointer font-semibold text-slate-900">Is this really just one file?</summary>
-          <p class="mt-3 text-slate-600">Yes. Pure HTML + Tailwind CDN. Forms go through Formspree or Netlify Forms. No backend needed.</p>
-        </details>
-        <details class="p-5">
-          <summary class="cursor-pointer font-semibold text-slate-900">Can I host it for free?</summary>
-          <p class="mt-3 text-slate-600">Absolutely. GitHub Pages or Netlify give free hosting with SSL.</p>
-        </details>
-        <details class="p-5">
-          <summary class="cursor-pointer font-semibold text-slate-900">How fast can we launch?</summary>
-          <p class="mt-3 text-slate-600">Within 24 hours in most cases. Delivery time varies if further customisations are required.</p>
-        </details>
-        <details class="p-5">
-          <summary class="cursor-pointer font-semibold text-slate-900">What are your charges?</summary>
-          <p class="mt-3 text-slate-600">We charge once for lifetime as per your chosen package.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
+<!-- CONTACT -->
 <section id="contact" class="py-20 bg-gradient-to-b from-slate-50/70 to-white/80">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="grid md:grid-cols-2 gap-10 items-start">
@@ -625,9 +597,35 @@
     </div>
   </div>
 </section>
-
 <!-- END CONTACT -->
-</section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="mb-6">
+        <h2 class="text-3xl font-bold text-slate-900">FAQ's</h2>
+        <p class="text-slate-600">Quick answers for common questions.</p>
+      </div>
+      <div class="divide-y rounded-2xl border border-slate-200 bg-white overflow-hidden">
+        <details class="p-5" open>
+          <summary class="cursor-pointer font-semibold text-slate-900">Is this really just one file?</summary>
+          <p class="mt-3 text-slate-600">Yes. Pure HTML + Tailwind CDN. Forms go through Formspree or Netlify Forms. No backend needed.</p>
+        </details>
+        <details class="p-5">
+          <summary class="cursor-pointer font-semibold text-slate-900">Can I host it for free?</summary>
+          <p class="mt-3 text-slate-600">Absolutely. GitHub Pages or Netlify give free hosting with SSL.</p>
+        </details>
+        <details class="p-5">
+          <summary class="cursor-pointer font-semibold text-slate-900">How fast can we launch?</summary>
+          <p class="mt-3 text-slate-600">Within 24 hours in most cases. Delivery time varies if further customisations are required.</p>
+        </details>
+        <details class="p-5">
+          <summary class="cursor-pointer font-semibold text-slate-900">What are your charges?</summary>
+          <p class="mt-3 text-slate-600">We charge once for lifetime as per your chosen package.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
 <!-- FOOTER -->
 <footer class="border-t border-slate-200 bg-white/80 backdrop-blur">
@@ -656,10 +654,28 @@
       <div>
         <p class="font-semibold text-slate-900">Newsletter</p>
         <p class="mt-2 text-slate-600">Occasional updates, no spam.</p>
-        <form action="https://formspree.io/f/xpwyjpve" method="POST" class="mt-3 flex gap-2">
+        <form action="https://formspree.io/f/mpwynjpe" method="POST" class="mt-3 flex gap-2">
+          <!-- Helpful metadata -->
+          <input type="hidden" name="_subject" value="New newsletter subscriber" />
+          <input type="hidden" name="form" value="Newsletter Footer" />
+          <!-- Honeypot anti-spam (bots fill it; humans don’t) -->
+          <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;" aria-hidden="true">
           <input name="email" type="email" required placeholder="Email address" class="flex-1 border rounded-lg px-3 py-2" />
           <button type="submit" class="btn btn-brand shadow-soft">Subscribe</button>
         </form>
+        <script>
+          document.querySelector('form[action^="https://formspree.io/f/mpwynjpe"]')
+            ?.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const form = e.currentTarget;
+              const data = new FormData(form);
+              try {
+                const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+                if (res.ok) form.innerHTML = '<p class="text-sky-700">Thanks! You’re on the list.</p>';
+                else alert('Submission failed. Please try again.');
+              } catch { alert('Network error. Please try again.'); }
+            });
+        </script>
       </div>
     </div>
     <div class="border-t py-4 text-center text-xs text-slate-500">© <span id="year"></span> SidTech. All rights reserved.</div>
