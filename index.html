@@ -379,7 +379,8 @@
         </div>
         <div class="glass rounded-2xl p-6 shadow-soft">
           <p class="font-semibold text-slate-900">Contact & Appointment Forms</p>
-          <p class="text-sm text-slate-600 mt-2">Whatsapp integrated, Formspree forms — no backend, direct to your inbox.</p>
+          <p class="text-sm text-slate-600 mt-2">Whatsapp integrated, Formspree forms — no backend, direct to your
+            inbox.</p>
         </div>
         <div class="glass rounded-2xl p-6 shadow-soft">
           <p class="font-semibold text-slate-900">Custom Branding</p>
@@ -446,14 +447,14 @@
         </a>
 
         <!-- Client 2 -->
-        <a href="https://sidtech-git-org.github.io/healthcare_suchethana_hospital_davanagere/" target="_blank"
+        <a href="https://sidtech-git-org.github.io/healthcare_siddaganga_diagnostics/" target="_blank"
           class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft hover:shadow-elev transition focus:outline-none focus:ring-2 focus:ring-sky-500">
 
           <!-- Image frame -->
           <div class="h-52 sm:h-56 w-full overflow-hidden bg-white p-2">
             <div
               class="h-full w-full rounded-xl border border-slate-200 bg-white flex items-center justify-center overflow-hidden">
-              <img src="assets/img/suchethana-hospital.jpg" alt="Suchethana Multi-Speciality Hospital"
+              <img src="assets/img/siddaganga-diagnostics.jpg" alt="Siddaganga Hi-Tech Diagnostics Center"
                 class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
             </div>
           </div>
@@ -464,7 +465,7 @@
 
             <div class="absolute inset-x-0 bottom-0 p-3">
               <p class="text-white font-semibold text-lg">
-                Suchethana Multi-Speciality Hospital
+                Siddaganga Hi-Tech Diagnostics Center
               </p>
 
               <span
@@ -514,14 +515,14 @@
         </a>
 
         <!-- Client 4 -->
-        <a href="https://sidtech-git-org.github.io/hotel_siddeshwara_idly_hotel_davanagere/" target="_blank"
+        <a href="https://sidtech-git-org.github.io/trust_preetiaaraike_davanagere/" target="_blank"
           class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft hover:shadow-elev transition focus:outline-none focus:ring-2 focus:ring-sky-500">
 
           <!-- Image frame -->
           <div class="h-52 sm:h-56 w-full overflow-hidden bg-white p-4">
             <div
               class="h-full w-full rounded-xl border border-slate-200 bg-white flex items-center justify-center overflow-hidden">
-              <img src="assets/img/siddeshwara-hotel.jpg" alt="Siddeshwara Idly Hotel"
+              <img src="assets/img/preeti-aaraike-trust.jpg" alt="Preeti Aaraike Trust"
                 class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
             </div>
           </div>
@@ -532,7 +533,7 @@
 
             <div class="absolute inset-x-0 bottom-0 p-5">
               <p class="text-white font-semibold text-lg">
-                Siddeshwara Idly Hotel
+                Preeti Aaraike Trust
               </p>
 
               <span
@@ -639,7 +640,7 @@
             Tell us about your requirements — we’ll reach out with a proposal within 24 hours.
           </p>
 
-          <form id="contactForm" action="https://formspree.io/f/xpwyjpve" method="POST"
+          <form id="contactForm"
             class="mt-5 grid gap-4 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-4">
 
             <select name="plan" id="planSelect" class="w-full border rounded-lg px-3 py-2" required>
@@ -656,64 +657,37 @@
             <input name="org" placeholder="Business name/type" class="w-full border rounded-lg px-3 py-2" />
             <textarea name="message" placeholder="What do you need?"
               class="w-full border rounded-lg px-3 py-2"></textarea>
-            <button type="submit" class="btn btn-brand shadow-soft">Send</button>
+            <button type="submit" class="btn btn-brand shadow-soft">Send on WhatsApp</button>
           </form>
 
           <script>
-              // Inline submit + success view + "Start another project" reset (no page refresh)
               (() => {
                 const form = document.getElementById('contactForm');
                 if (!form) return;
 
-                // Save original form markup so we can restore it after success
-                if (!form.dataset.original) form.dataset.original = form.innerHTML;
-
-                async function handleContactSubmit(e) {
+                form.addEventListener('submit', function (e) {
                   e.preventDefault();
                   if (!validateEmail(e)) return;
 
-                  const data = new FormData(form);
-                  try {
-                    const res = await fetch(form.action, {
-                      method: form.method,
-                      body: data,
-                      headers: { Accept: 'application/json' }
-                    });
+                  const plan = document.getElementById('planSelect')?.value || '';
+                  const price = document.getElementById('priceField')?.value || '';
+                  const name = form.querySelector('input[name="name"]')?.value.trim() || '';
+                  const email = form.querySelector('input[name="email"]')?.value.trim() || '';
+                  const org = form.querySelector('input[name="org"]')?.value.trim() || '';
+                  const message = form.querySelector('textarea[name="message"]')?.value.trim() || '';
 
-                    if (res.ok) {
-                      form.innerHTML = `
-            <div class="text-center py-10">
-              <div class="text-3xl mb-3">🎉</div>
-              <h3 class="text-2xl font-semibold text-sky-700">Great move!</h3>
-              <p class="text-slate-700 mt-2">SidTech will contact you within 24 hours.</p>
-              <button id="submitAnother" type="button" class="mt-6 btn btn-ghost">Start another project</button>
-            </div>`;
+                  const whatsappText = `New Project Enquiry - SidTech
 
-                      // Handle "Start another project" (restore original form)
-                      document.getElementById('submitAnother')?.addEventListener('click', () => {
-                        form.innerHTML = form.dataset.original || '';
+Plan: ${plan}
+Price: ${price}
+Name: ${name}
+Email: ${email}
+Business: ${org}
+Requirement: ${message}`;
 
-                        // Re-attach submit handler to the restored form
-                        form.addEventListener('submit', handleContactSubmit);
-
-                        // Re-attach plan dropdown listener & sync price
-                        const newPlanSelect = document.getElementById('planSelect');
-                        newPlanSelect?.addEventListener('change', (ev) => setPlan(ev.target.value));
-                        setPlan(document.getElementById('planSelect')?.value || '');
-
-                        // Focus first field
-                        form.querySelector('input[name="name"]')?.focus();
-                      });
-                    } else {
-                      alert('Oops! Something went wrong while submitting the form. Please try again.');
-                    }
-                  } catch {
-                    alert('Network error — please check your connection and try again.');
-                  }
-                }
-
-                // Attach the submit handler once on page load
-                form.addEventListener('submit', handleContactSubmit);
+                  const whatsappUrl = `https://wa.me/919482244559?text=${encodeURIComponent(whatsappText)}`;
+                  window.open(whatsappUrl, '_blank');
+                });
               })();
           </script>
 
